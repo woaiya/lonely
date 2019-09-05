@@ -9,5 +9,6 @@ from myblog import views
 app_name = 'myblog'
 urlpatterns = [
     path('index/', views.index, name='index'),
+    path('mydiary/', views.mydiary, name='mydiary'),
     path('graphic/<graphic_id>', views.graphic, name='graphic'),
 ]

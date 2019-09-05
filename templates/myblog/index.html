@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>首页_杨青个人博客 - 一个站在web前端设计之路的女技术员个人博客网站</title>
-<meta name="keywords" content="个人博客,杨青个人博客,个人博客模板,杨青" />
-<meta name="description" content="杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+<title>lonely的博客</title>
+<meta name="keywords" content="个人博客lonely" />
+<meta name="description" content="个人博客lonely" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="/static/myblog/css/base.css" rel="stylesheet">
 <link href="/static/myblog/css/index.css" rel="stylesheet">
@@ -17,12 +17,12 @@
 </head>
 <body>
 <header class="header-navigation" id="header">
-  <nav><div class="logo"><a href="/">杨青个人博客</a></div>
+  <nav><div class="logo"><a href="/">lonely的个人博客</a></div>
     <h2 id="mnavh"><span class="navicon"></span></h2>
     <ul id="starlist">
       <li><a href="{% url 'myblog:index' %}">网站首页</a></li>
       <li><a href="share.html">我的相册</a></li>
-      <li><a href="list.html">我的日记</a></li>
+      <li><a href="{% url 'myblog:mydiary' %}">我的日记</a></li>
       <li><a href="about.html">关于我</a></li>
       <li><a href="gbook.html">留言</a></li>
       <li><a href="info.html">内容页</a></li>
@@ -36,7 +36,7 @@
         <h2>关于我</h2>
         <ul>
           <i><img src="/static/myblog/images/4.jpg"></i>
-          <p><b>杨青</b>，一个80后草根女站长！09年入行。一直潜心研究web前端技术，一边工作一边积累经验，分享一些个人博客模板，以及SEO优化等心得。</p>
+          <p><b>lonely</b>，一个三无测试</p>
         </ul>
       </div>
       <div class="wdxc">
@@ -50,6 +50,7 @@
           <li><a href="/"><img src="/static/myblog/images/12.jpg"></a></li>
         </ul>
       </div>
+      <!--
       <div class="search">
         <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
           <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
@@ -59,13 +60,13 @@
           <input name="Submit" class="input_submit" value="搜索" type="submit">
         </form>
       </div>
+      -->
       <div class="fenlei">
         <h2>文章分类</h2>
         <ul>
-          <li><a href="/">学无止境（33）</a></li>
-          <li><a href="/">日记（19）</a></li>
-          <li><a href="/">慢生活（520）</a></li>
-          <li><a href="/">美文欣赏（40）</a></li>
+            {% for article in classify %}
+                <li><a href="/">{{ article.learn_name }}（{{ article.num_articles }}）</a></li>
+            {% endfor %}
         </ul>
       </div>
       <div class="tuijian">
@@ -81,6 +82,7 @@
           <li><a href="/">个人博客模板《绅士》后台管理</a></li>
         </ul>
       </div>
+      <!--
       <div class="links">
         <h2>友情链接</h2>
         <ul>
@@ -93,6 +95,7 @@
           <img src="/static/myblog/images/wx.jpg">
         </ul>
       </div>
+      -->
   </aside>
   <main class="r_box">
       {% for post in posts %}

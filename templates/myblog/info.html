@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>首页_杨青个人博客 - 一个站在web前端设计之路的女技术员个人博客网站</title>
-<meta name="keywords" content="个人博客,杨青个人博客,个人博客模板,杨青" />
-<meta name="description" content="杨青个人博客，是一个站在web前端设计之路的女程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。" />
+<title>lonely的博客</title>
+<meta name="keywords" content="个人博客lonely" />
+<meta name="description" content="个人博客lonely" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="/static/myblog/css/base.css" rel="stylesheet">
 <link href="/static/myblog/css/index.css" rel="stylesheet">
@@ -19,7 +19,7 @@
 <body>
 <header class="header-navigation" id="header">
   <nav>
-    <div class="logo"><a href="/">杨青个人博客</a></div>
+    <div class="logo"><a href="/">lonely的个人博客</a></div>
     <h2 id="mnavh"><span class="navicon"></span></h2>
     <ul id="starlist">
       <li><a href="{% url 'myblog:index' %}">网站首页</a></li>
@@ -34,6 +34,7 @@
 </header>
 <article>
   <aside class="l_box">
+  <!--
     <div class="search">
       <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
         <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text">
@@ -43,13 +44,13 @@
         <input name="Submit" class="input_submit" value="搜索" type="submit">
       </form>
     </div>
+    -->
     <div class="fenlei">
       <h2>文章分类</h2>
       <ul>
-        <li><a href="/">学无止境（33）</a></li>
-        <li><a href="/">日记（19）</a></li>
-        <li><a href="/">慢生活（520）</a></li>
-        <li><a href="/">美文欣赏（40）</a></li>
+          {% for article in classify %}
+              <li><a href="/">{{ article.learn_name }}（{{ article.num_articles }}）</a></li>
+          {% endfor %}
       </ul>
     </div>
     <div class="tuijian">
@@ -68,28 +69,36 @@
     <div class="tuijian">
       <h2>点击排行</h2>
       <ul>
-        <li><a href="/">你是什么人便会遇上什么人</a></li>
-        <li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-        <li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
-        <li><a href="/">个人博客模板《绅士》后台管理</a></li>
-        <li><a href="/">你是什么人便会遇上什么人</a></li>
-        <li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-        <li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
-        <li><a href="/">个人博客模板《绅士》后台管理</a></li>
+          {% for view in views %}
+              <li><a href="{% url 'myblog:graphic' view.graphic_id %}">{{ view.graphic_title }}</a></li>
+          {% endfor %}
       </ul>
     </div>
     <div class="cloud">
       <h2>标签云</h2>
       <ul>
-        <a href="/">陌上花开</a> <a href="/">校园生活</a> <a href="/">html5</a> <a href="/">SumSung</a> <a href="/">青春</a> <a href="/">温暖</a> <a href="/">阳光</a> <a href="/">三星</a><a href="/">索尼</a> <a href="/">华维荣耀</a> <a href="/">三星</a> <a href="/">索尼</a>
+          <a href="/">陌上花开</a>
+          <a href="/">校园生活</a>
+          <a href="/">html5</a>
+          <a href="/">SumSung</a>
+          <a href="/">青春</a>
+          <a href="/">温暖</a>
+          <a href="/">阳光</a>
+          <a href="/">三星</a>
+          <a href="/">索尼</a>
+          <a href="/">华维荣耀</a>
+          <a href="/">三星</a>
+          <a href="/">索尼</a>
       </ul>
     </div>
+  <!--
     <div class="guanzhu">
       <h2>关注我 么么哒</h2>
       <ul>
         <img src="/static/myblog/images/wx.jpg">
       </ul>
     </div>
+    -->
   </aside>
   <main>
     <div class="infosbox">
@@ -109,10 +118,12 @@
             {{ posts.graphic_body|safe }}
         </div>
       </div>
+    <!--
       <div class="share">
         <p class="diggit"><a href="JavaScript:makeRequest('/e/public/digg/?classid=3&amp;id=19&amp;dotop=1&amp;doajax=1&amp;ajaxarea=diggnum','EchoReturnedText','GET','');"> 很赞哦！ </a>
             (<b id="diggnum"><script type="text/javascript" src="/e/public/ViewClick/?classid=2&id=20&down=5"></script>13</b>)</p>
       </div>
+      -->
       <div class="nextinfo">
           {% if last != None %}
               <p>上一篇：<a href="{% url 'myblog:graphic' last.graphic_id %}">{{ last.graphic_title }}</a></p>
@@ -121,6 +132,7 @@
               <p>下一篇：<a href="{% url 'myblog:graphic' next.graphic_id %}">{{ next.graphic_title }}</a></p>
           {% endif %}
       </div>
+    <!--
       <div class="news_pl">
         <h2>文章评论</h2>
         <div class="gbko"> 
@@ -140,7 +152,6 @@
               </div>
             </ul>
           </div>
-          
           <script>
 		  function CheckPl(obj)
 		  {
@@ -174,6 +185,7 @@
           </form>
         </div>
       </div>
+      -->
     </div>
   </main>
 </article>
