@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from myblog.models import LearnTypeModels, LabelModels, AuthorModels, ArticleRecordModels, GraphicRecordModels
+from myblog.models import LearnTypeModels, LabelModels, AuthorModels, ArticleRecordModels, GraphicRecordModels, RecommendModels
 
 
 @admin.register(LearnTypeModels)
@@ -30,3 +30,8 @@ class ArticleRecordAdmin(admin.ModelAdmin):
 class GraphicRecordAdmin(admin.ModelAdmin):
     list_display = ['graphic_id', 'graphic_author', 'graphic_title', 'graphic_learn',
                     'graphic_views', 'category_colored_status']
+
+
+@admin.register(RecommendModels)
+class RecommendAdmin(admin.ModelAdmin):
+    list_display = ['recommend_id', 'recommend_title', 'recommend_graphic_id', 'category_colored_status']

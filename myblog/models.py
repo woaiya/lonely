@@ -217,3 +217,42 @@ class GraphicRecordModels(models.Model):
         db_table = 'graphic'
         verbose_name = '图文'
         verbose_name_plural = verbose_name
+
+
+class RecommendModels(models.Model):
+
+    """
+    站长推荐
+    """
+    recommend_id = models.AutoField(primary_key=True)
+    recommend_title = models.CharField(max_length=150, verbose_name='标题')
+    recommend_graphic_id = models.ForeignKey(GraphicRecordModels, default=1, on_delete=models.DO_NOTHING, verbose_name="图文博客ID")
+    recommend_state = models.IntegerField(default=1, verbose_name='状态')
+    create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
+    update_time = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    """
+    这个方法用来处理后台显示，当state状态为1时显示正常，否则显示异常
+    category_colored_status.short_description 用来处理这个方法的标题显示
+    """
+    def category_colored_status(self):
+        if self.recommend_state == 1:
+            color_code = 'green'
+            state_name = '正常'
+        else:
+            color_code = 'red'
+            state_name = '异常'
+        return format_html(
+            '<span style="color: {};">{}</span>',
+            color_code,
+            state_name,
+        )
+    category_colored_status.short_description = '状态'
+
+    def __str__(self):
+        return self.recommend_title
+
+    class Meta:
+        db_table = 'recommends'
+        verbose_name = '站长推荐'
+        verbose_name_plural = verbose_name

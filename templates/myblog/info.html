@@ -30,14 +30,9 @@
             <div class="tuijian">
                 <h2>站长推荐</h2>
                 <ul>
-                    <li><a href="/">你是什么人便会遇上什么人</a></li>
-                    <li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-                    <li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
-                    <li><a href="/">个人博客模板《绅士》后台管理</a></li>
-                    <li><a href="/">你是什么人便会遇上什么人</a></li>
-                    <li><a href="/">帝国cms 列表页调用子栏目，没有则不显示栏目名称</a></li>
-                    <li><a href="/">第二届 优秀个人博客模板比赛参选活动</a></li>
-                    <li><a href="/">个人博客模板《绅士》后台管理</a></li>
+                    {% for recommend in recommends %}
+                        <li><a href="{% url 'myblog:graphic' recommend.recommend_graphic_id_id %}">{{ recommend.recommend_graphic_id }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="tuijian">
@@ -51,18 +46,9 @@
             <div class="cloud">
                 <h2>标签云</h2>
                 <ul>
-                    <a href="/">陌上花开</a>
-                    <a href="/">校园生活</a>
-                    <a href="/">html5</a>
-                    <a href="/">SumSung</a>
-                    <a href="/">青春</a>
-                    <a href="/">温暖</a>
-                    <a href="/">阳光</a>
-                    <a href="/">三星</a>
-                    <a href="/">索尼</a>
-                    <a href="/">华维荣耀</a>
-                    <a href="/">三星</a>
-                    <a href="/">索尼</a>
+                    {% for label in labels %}
+                        <a href="/">{{ label.label_name }}</a>
+                    {% endfor %}
                 </ul>
             </div>
             <!--
